@@ -1,0 +1,19 @@
+# @package _global_
+# Paper run preset: full training with proper hyperparameters
+total_steps: 1_000_000
+seed: 42
+deterministic: true
+
+# Logging
+log_interval: 10
+save_freq: 50000
+eval_freq: 10000
+use_wandb: true
+use_mlflow: false
+
+# Performance optimizations
+amp: true
+torch_compile: true
+torch_deterministic: false  # Allow non-deterministic for speed
+
+# Full PPO hyperparameters (no overrides)

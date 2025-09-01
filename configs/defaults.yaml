@@ -1,0 +1,36 @@
+# Base configuration (Hydra composition)
+# Override with: python -m rrl.train agent=ppo env=cartpole run=debug
+
+defaults:
+  - agent: ppo
+  - env: cartpole
+  - run: debug
+  - _self_
+
+# Global settings
+seed: 42
+deterministic: true
+total_steps: 100_000
+
+# Logging and tracking
+use_wandb: false
+use_mlflow: false
+log_interval: 10
+save_freq: 10000
+eval_freq: 5000
+
+# Output paths
+experiments_dir: ./experiments
+log_dir: ${experiments_dir}/${now:%Y-%m-%d_%H-%M-%S}
+
+# Performance and safety
+max_steps: null
+time_limit: null
+clip_grad: true
+clip_grad_norm: 0.5
+amp: false  # Mixed precision
+torch_compile: false
+
+# Reproducibility
+torch_deterministic: true
+torch_benchmark: false
