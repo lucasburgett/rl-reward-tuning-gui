@@ -1,0 +1,11 @@
+# Training session defaults
+seed: 42
+deterministic: true
+device: auto               # auto|cpu|cuda
+total_steps: 100000
+log_dir: "experiments/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+use_wandb: false
+
+# Composition targets (select via CLI)
+env: cartpole
+algo: ppo
