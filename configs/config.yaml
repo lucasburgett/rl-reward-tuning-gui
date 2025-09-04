@@ -1,0 +1,18 @@
+# Main configuration file for training
+defaults:
+  - env: cartpole
+  - algo: ppo
+  - _self_
+
+# Training session defaults
+seed: 42
+deterministic: true
+device: auto               # auto|cpu|cuda
+total_steps: 100000
+log_dir: "experiments/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+use_wandb: false
+
+# Post-training evaluation
+eval:
+  run_after_train: true
+  n_episodes: 10

@@ -1,11 +1,18 @@
+# Hydra defaults for composition
+defaults:
+  - env: cartpole
+  - algo: ppo
+
 # Evaluation session defaults
 seed: 42
 deterministic: true
 device: auto
-episodes: 10
-render: false
-checkpoint: null   # path to ckpt; null prints config + exits for now
+log_dir: "experiments/latest"  # Default log_dir for checkpoint resolution
 
-# Composition targets (select via CLI when needed)
-env: cartpole
-algo: ppo
+# Evaluation configuration
+eval:
+  n_episodes: 10
+  record_video: true
+  video_dir: ${log_dir}/videos
+  load_checkpoint: latest  # "latest" or explicit path
+  run_after_train: true

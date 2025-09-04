@@ -1,3 +1,8 @@
+# Hydra defaults for composition
+defaults:
+  - env: cartpole
+  - algo: ppo
+
 # Training session defaults
 seed: 42
 deterministic: true
@@ -6,6 +11,7 @@ total_steps: 100000
 log_dir: "experiments/${now:%Y-%m-%d}/${now:%H-%M-%S}"
 use_wandb: false
 
-# Composition targets (select via CLI)
-env: cartpole
-algo: ppo
+# Post-training evaluation
+eval:
+  run_after_train: true
+  n_episodes: 10

@@ -1,0 +1,4 @@
+- env=cartpole
+- algo=ppo
+- total_steps=1000
+- eval.run_after_train=false

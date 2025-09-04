@@ -1,3 +1,5 @@
 """RL Agents package (PPO, DQN, etc.)."""
 
-__all__: list[str] = []
+from .ppo import PPOAgent
+
+__all__: list[str] = ["PPOAgent"]

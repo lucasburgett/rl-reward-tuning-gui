@@ -1,0 +1,5 @@
+- total_steps=100000
+- algo.rollout_len=1024
+- algo.learning_rate=3e-4
+- eval.run_after_train=true
+- eval.n_episodes=10

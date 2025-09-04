@@ -1,13 +1,22 @@
-# Minimal, sane PPO defaults for CartPole debugging
+# PPO hyperparameters optimized for CartPole
 algo_name: ppo
+
+# Core PPO parameters
+learning_rate: 3.0e-4
+rollout_len: 2048        # n_steps in SB3
+num_minibatches: 4       # Used to calculate batch_size = rollout_len // num_minibatches
+update_epochs: 4         # n_epochs in SB3
 gamma: 0.99
 gae_lambda: 0.95
-learning_rate: 3.0e-4
-entropy_coef: 0.0
-value_coef: 0.5
-clip_ratio: 0.2
-num_minibatches: 4
-update_epochs: 4
-rollout_len: 2048
+clip_ratio: 0.2          # clip_range in SB3
+entropy_coef: 0.0        # ent_coef in SB3
+value_coef: 0.5          # vf_coef in SB3
 max_grad_norm: 0.5
 normalize_adv: true
+
+# Training schedule
+checkpoint_every: 10000
+eval_every: 20000
+
+# Policy network configuration
+policy_kwargs: {}

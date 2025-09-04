@@ -1,0 +1,19 @@
+# Main configuration file for evaluation
+defaults:
+  - env: cartpole
+  - algo: ppo
+  - _self_
+
+# Evaluation session defaults
+seed: 42
+deterministic: true
+device: auto
+log_dir: "experiments/latest"  # Default log_dir for checkpoint resolution
+
+# Evaluation configuration
+eval:
+  n_episodes: 10
+  record_video: true
+  video_dir: ${log_dir}/videos
+  load_checkpoint: latest  # "latest" or explicit path
+  run_after_train: true
