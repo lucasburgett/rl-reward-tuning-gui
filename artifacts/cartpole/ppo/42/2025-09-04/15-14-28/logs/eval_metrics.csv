@@ -1,0 +1,2 @@
+eval_idx,n_episodes,mean_return,std_return,video_written,checkpoint_path
+0,10,378.3,74.62311974180656,False,artifacts/cartpole/ppo/42/2025-09-04/15-14-28/checkpoints/final_model.zip

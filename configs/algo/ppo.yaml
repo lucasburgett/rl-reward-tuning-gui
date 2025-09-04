@@ -1,4 +1,4 @@
-# PPO hyperparameters optimized for CartPole
+# PPO hyperparameters (works well for both CartPole and LunarLander)
 algo_name: ppo
 
 # Core PPO parameters
@@ -20,3 +20,11 @@ eval_every: 20000
 
 # Policy network configuration
 policy_kwargs: {}
+
+# Environment-specific presets (can override via CLI)
+# For LunarLander: consider n_steps=4096, batch_size=64 for better performance
+lunarlander_preset:
+  rollout_len: 4096      # Longer rollouts for complex environments
+  num_minibatches: 64    # Smaller batch size
+  learning_rate: 2.5e-4  # Slightly lower LR
+  gamma: 0.999           # Higher discount for sparse rewards

@@ -8,12 +8,12 @@ defaults:
 seed: 42
 deterministic: true
 device: auto
-log_dir: "experiments/latest"  # Default log_dir for checkpoint resolution
+log_dir: null  # Auto-detect latest run from artifacts/{env}/{algo}/{seed}/ structure
 
 # Evaluation configuration
 eval:
   n_episodes: 10
   record_video: true
-  video_dir: ${log_dir}/videos
+  video_dir: null  # Auto-resolved to artifacts directory
   load_checkpoint: latest  # "latest" or explicit path
   run_after_train: true

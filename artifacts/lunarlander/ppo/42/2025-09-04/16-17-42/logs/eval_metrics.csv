@@ -1,0 +1,7 @@
+eval_idx,n_episodes,mean_return,std_return,video_written,checkpoint_path
+0,10,-2748.278741291716,2079.829096873978,False,artifacts/lunarlander/ppo/42/2025-09-04/16-17-42/checkpoints/final_model.zip
+0,3,-2192.6321771861662,399.7126838688617,True,artifacts/lunarlander/ppo/42/2025-09-04/16-17-42/checkpoints/final_model.zip
+0,2,-2178.638443628057,488.94567257701215,True,artifacts/lunarlander/ppo/42/2025-09-04/16-17-42/checkpoints/final_model.zip
+0,2,-2178.638443628057,488.94567257701215,True,artifacts/lunarlander/ppo/42/2025-09-04/16-17-42/checkpoints/final_model.zip
+0,10,-2748.278741291716,2079.829096873978,True,artifacts/lunarlander/ppo/42/2025-09-04/16-17-42/checkpoints/final_model.zip
+0,1,-2667.5841162050688,0.0,True,artifacts/lunarlander/ppo/42/2025-09-04/16-17-42/checkpoints/final_model.zip

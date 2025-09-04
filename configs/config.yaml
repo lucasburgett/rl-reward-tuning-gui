@@ -8,11 +8,23 @@ defaults:
 seed: 42
 deterministic: true
 device: auto               # auto|cpu|cuda
-total_steps: 100000
-log_dir: "experiments/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+total_steps: 1000000       # Increased for LunarLander
+log_dir: null              # Will use artifacts/{env}/{algo}/{seed}/{timestamp} if null
 use_wandb: false
+
+# Weights & Biases configuration (only used if use_wandb: true)
+wandb:
+  project: rl-template
+  entity: null             # Set to your W&B username/team
+  group: ${env}-${algo}    # Groups related runs
+  job_type: train
+  mode: online             # online|offline|disabled
+
+# Logging intervals
+log_eval_every: 20000      # steps between evals during training
 
 # Post-training evaluation
 eval:
   run_after_train: true
   n_episodes: 10
+  record_video: false      # Set to true to record evaluation videos

@@ -1,0 +1,5 @@
+- env=cartpole
+- algo=ppo
+- log_dir=experiments/2025-09-04/16-29-22
+- eval.n_episodes=10
+- eval.record_video=true

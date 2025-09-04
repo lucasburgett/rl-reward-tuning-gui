@@ -1,0 +1,36 @@
+env:
+  id: LunarLander-v3
+  max_steps: 1000
+  reward_clip: null
+  time_limit: null
+algo:
+  algo_name: ppo
+  learning_rate: 0.0003
+  rollout_len: 2048
+  num_minibatches: 4
+  update_epochs: 4
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_ratio: 0.2
+  entropy_coef: 0.0
+  value_coef: 0.5
+  max_grad_norm: 0.5
+  normalize_adv: true
+  checkpoint_every: 10000
+  eval_every: 20000
+  policy_kwargs: {}
+  lunarlander_preset:
+    rollout_len: 4096
+    num_minibatches: 64
+    learning_rate: 0.00025
+    gamma: 0.999
+seed: 42
+deterministic: true
+device: auto
+log_dir: null
+eval:
+  n_episodes: 10
+  record_video: true
+  video_dir: ${log_dir}/videos
+  load_checkpoint: latest
+  run_after_train: true

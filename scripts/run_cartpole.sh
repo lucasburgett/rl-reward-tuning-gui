@@ -23,21 +23,16 @@ else
     source .venv/bin/activate
 fi
 
-# Generate timestamped log directory
-TIMESTAMP=$(date +%Y-%m-%d/%H-%M-%S)
-LOG_DIR="experiments/${TIMESTAMP}"
-
 echo -e "${GREEN}📊 Training PPO on CartPole-v1${NC}"
-echo "Log directory: ${LOG_DIR}"
 
 # Train PPO with optimized hyperparameters for CartPole
 python -m src.train \
   env=cartpole \
   algo=ppo \
   total_steps=200000 \
-  log_dir="${LOG_DIR}" \
   eval.run_after_train=true \
-  eval.n_episodes=10
+  eval.n_episodes=10 \
+  "$@"
 
 # Check if training was successful
 if [ $? -eq 0 ]; then
@@ -48,15 +43,12 @@ if [ $? -eq 0 ]; then
     python -m src.eval \
       env=cartpole \
       algo=ppo \
-      log_dir="${LOG_DIR}" \
       eval.n_episodes=10 \
       eval.record_video=true
     
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}✅ Evaluation completed successfully!${NC}"
-        echo -e "${YELLOW}📁 Results saved to: ${LOG_DIR}${NC}"
-        echo -e "${YELLOW}🎥 Videos saved to: ${LOG_DIR}/videos${NC}"
-        echo -e "${YELLOW}💾 Checkpoints saved to: ${LOG_DIR}/checkpoints${NC}"
+        echo -e "${YELLOW}📁 Check artifacts/cartpole/ppo/ for results${NC}"
     else
         echo -e "${RED}❌ Evaluation failed${NC}"
         exit 1
@@ -66,4 +58,4 @@ else
     exit 1
 fi
 
-echo -e "${GREEN}🎉 All done! Check ${LOG_DIR} for results.${NC}"
+echo -e "${GREEN}🎉 All done! Check artifacts/cartpole/ppo/ for results.${NC}"

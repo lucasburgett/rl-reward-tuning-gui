@@ -1,0 +1,3 @@
+- env=lunarlander
+- algo=ppo
+- eval.n_episodes=5

@@ -1,0 +1,5 @@
+- env=lunarlander
+- algo=ppo
+- log_dir=artifacts/lunarlander/ppo/42/2025-09-04/15-16-42
+- eval.n_episodes=3
+- eval.record_video=true

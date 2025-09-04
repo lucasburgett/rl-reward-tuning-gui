@@ -1,0 +1,4 @@
+- env=lunarlander
+- algo=ppo
+- eval.record_video=true
+- eval.n_episodes=3

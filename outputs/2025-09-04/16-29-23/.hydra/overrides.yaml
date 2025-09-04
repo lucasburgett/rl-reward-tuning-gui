@@ -1,0 +1,6 @@
+- env=cartpole
+- algo=ppo
+- total_steps=200000
+- log_dir=experiments/2025-09-04/16-29-22
+- eval.run_after_train=true
+- eval.n_episodes=10
