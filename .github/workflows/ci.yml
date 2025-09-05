@@ -48,6 +48,10 @@ jobs:
           python-version: "3.11"
           cache: "pip"
           cache-dependency-path: "requirements.txt"
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends swig
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
