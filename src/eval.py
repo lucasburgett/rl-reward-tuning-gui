@@ -183,14 +183,14 @@ def main(cfg: DictConfig) -> None:
 
         # Check target scores
         if env_id == "CartPole-v1" and results["mean_return"] >= 475.0:
-            print("🎉 Successfully achieved ≥475/500 on CartPole!")
+            print("Successfully achieved ≥475/500 on CartPole!")
         elif env_id == "LunarLander-v3" and results["mean_return"] >= 200.0:
-            print("🎉 Successfully achieved ≥200 on LunarLander!")
+            print("Successfully achieved ≥200 on LunarLander!")
 
-        print("✅ Evaluation complete.")
+        print("Evaluation complete.")
 
     except Exception as e:
-        print(f"❌ Evaluation failed: {e}")
+        print(f"Evaluation failed: {e}")
         import traceback
 
         traceback.print_exc()

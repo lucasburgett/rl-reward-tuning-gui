@@ -232,18 +232,18 @@ def main(cfg: DictConfig) -> None:
 
             # Check target scores
             if env_id == "CartPole-v1" and results["mean_return"] >= 475.0:
-                print("🎉 Successfully achieved ≥475/500 on CartPole!")
+                print("Successfully achieved ≥475/500 on CartPole!")
             elif env_id == "LunarLander-v3" and results["mean_return"] >= 200.0:
-                print("🎉 Successfully achieved ≥200 on LunarLander!")
+                print("Successfully achieved ≥200 on LunarLander!")
 
-        print("✅ Training complete!")
+        print("Training complete!")
 
         # Clean up W&B
         if wandb_run is not None:
             wandb_run.finish()
 
     except Exception as e:
-        print(f"❌ Training failed: {e}")
+        print(f"Training failed: {e}")
         # Clean up W&B on error
         try:
             if "wandb_run" in locals() and wandb_run is not None:

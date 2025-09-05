@@ -4,11 +4,11 @@ A clean, reproducible template for deep RL experiments with deterministic runs, 
 
 ## Features
 
-- 🎯 **Multi-Environment PPO**: Stable-Baselines3 PPO integration with CartPole-v1 and LunarLander-v3
-- 🔧 **Reproducible**: Deterministic seeding and configuration management via Hydra
-- 📊 **Advanced Logging**: CSV metrics logging, optional Weights & Biases integration, video recording
-- 🗂️ **Organized Artifacts**: Structured output layout under `artifacts/{env}/{algo}/{seed}/{timestamp}/`
-- ⚡ **Fast Setup**: One-command training and evaluation with convenience scripts
+- **Multi-Environment PPO**: Stable-Baselines3 PPO integration with CartPole-v1 and LunarLander-v3
+- **Reproducible**: Deterministic seeding and configuration management via Hydra
+- **Advanced Logging**: CSV metrics logging, optional Weights & Biases integration, video recording
+- **Organized Artifacts**: Structured output layout under `artifacts/{env}/{algo}/{seed}/{timestamp}/`
+- **Fast Setup**: One-command training and evaluation with convenience scripts
 
 ## Quick Start
 
@@ -62,14 +62,14 @@ python -m src.eval env=lunarlander algo=ppo eval.record_video=true
 The PPO implementation achieves:
 
 ### CartPole-v1
-- ✅ **500/500 perfect score** consistently 
-- ✅ **Fast convergence** in ~20k training steps
-- ✅ **Sub-5 minute training** on CPU
+- **500/500 perfect score** consistently 
+- **Fast convergence** in ~20k training steps
+- **Sub-5 minute training** on CPU
 
 ### LunarLander-v3 (Day 4)
-- ✅ **≥200 mean return** (target achieved with default settings)
-- ✅ **Convergence** in 0.5-1.5M training steps (~30-60 minutes)
-- ✅ **Deterministic training** with proper seeding across environments
+- **≥200 mean return** (target achieved with default settings)
+- **Convergence** in 0.5-1.5M training steps (~30-60 minutes)
+- **Deterministic training** with proper seeding across environments
 
 ## Configuration
 
@@ -124,12 +124,12 @@ python -m src.train env=lunarlander use_wandb=true wandb.project=my-rl-experimen
 Day 4 adds LunarLander-v3 support with enhanced logging and artifacts management:
 
 ### Key Day 4 Features
-- 🌙 **LunarLander-v3** environment with Box2D physics
-- 📊 **CSV Logging**: Training/eval metrics saved to structured CSV files
-- 🎪 **Weights & Biases**: Optional W&B integration for experiment tracking  
-- 🗂️ **Artifacts Layout**: Organized structure under `artifacts/{env}/{algo}/{seed}/{timestamp}/`
-- 📹 **Enhanced Video Recording**: Automatic video capture during evaluations
-- ⚡ **Training Optimizations**: Environment-specific hyperparameter presets
+- **LunarLander-v3** environment with Box2D physics
+- **CSV Logging**: Training/eval metrics saved to structured CSV files
+- **Weights & Biases**: Optional W&B integration for experiment tracking  
+- **Artifacts Layout**: Organized structure under `artifacts/{env}/{algo}/{seed}/{timestamp}/`
+- **Enhanced Video Recording**: Automatic video capture during evaluations
+- **Training Optimizations**: Environment-specific hyperparameter presets
 
 ### LunarLander Performance Tips
 - **Target score**: ≥200 mean return (typically achieved in 500k-1.5M steps)
@@ -163,6 +163,44 @@ python -m src.train env=lunarlander use_wandb=true wandb.project=my-experiments
 - **Missing dependencies**: Run `pip install -r requirements.txt`
 - **Config errors**: Ensure you're using the root `configs/` directory structure
 - **Artifacts not found**: Check the `artifacts/` directory structure matches `{env}/{algo}/{seed}/{timestamp}/`
+
+## Day 5 — Testing
+
+A minimal but robust test suite with fast runtime and strong determinism guarantees.
+
+### Running Tests
+
+```bash
+# Install testing dependencies (if not already installed)
+pip install pytest>=8.2 pytest-timeout>=2.3
+
+# Run all tests
+pytest -q
+
+# Run specific test modules
+pytest tests/test_seeding.py -v
+pytest tests/test_env_wrappers.py -v
+pytest tests/test_repro_small.py -v
+```
+
+### Test Coverage
+
+- **`test_seeding.py`**: Ensures deterministic evaluation with same seed & config
+- **`test_env_wrappers.py`**: Validates environment shapes, truncation, and finite values
+- **`test_repro_small.py`**: Verifies 5k step training achieves ≥100 average return on CartPole
+
+### Performance Notes
+
+- **Expected runtime**: ~1-2 minutes on CPU
+- **Fast configs**: Tests use minimal PPO hyperparameters for quick execution
+- **No videos/W&B**: Tests disable video recording and Weights & Biases for speed
+- **Determinism**: All tests use single-threaded math and fixed seeds
+
+### Troubleshooting
+
+- **Slow tests**: Tests use `@pytest.mark.timeout(90)` to prevent hanging
+- **Box2D not needed**: CartPole tests don't require Box2D/LunarLander dependencies
+- **Temporary files**: Tests use `tmp_path` fixtures, no cleanup needed
 
 ## Development Notes
 

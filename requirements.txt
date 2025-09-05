@@ -9,3 +9,5 @@ omegaconf>=2.3.0
 moviepy>=1.0.3
 pygame>=2.5.0
 wandb>=0.17.0
+pytest>=8.2
+pytest-timeout>=2.3

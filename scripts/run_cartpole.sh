@@ -8,7 +8,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-echo -e "${GREEN}🚀 Starting CartPole PPO Training & Evaluation${NC}"
+echo -e "${GREEN}Starting CartPole PPO Training & Evaluation${NC}"
 
 # Check if virtual environment exists, create if missing
 if [ ! -d ".venv" ]; then
@@ -23,7 +23,7 @@ else
     source .venv/bin/activate
 fi
 
-echo -e "${GREEN}📊 Training PPO on CartPole-v1${NC}"
+echo -e "${GREEN}Training PPO on CartPole-v1${NC}"
 
 # Train PPO with optimized hyperparameters for CartPole
 python -m src.train \
@@ -36,10 +36,10 @@ python -m src.train \
 
 # Check if training was successful
 if [ $? -eq 0 ]; then
-    echo -e "${GREEN}✅ Training completed successfully!${NC}"
+    echo -e "${GREEN}Training completed successfully!${NC}"
     
     # Run standalone evaluation with video recording
-    echo -e "${GREEN}🎬 Running evaluation with video recording...${NC}"
+    echo -e "${GREEN}Running evaluation with video recording...${NC}"
     python -m src.eval \
       env=cartpole \
       algo=ppo \
@@ -47,15 +47,15 @@ if [ $? -eq 0 ]; then
       eval.record_video=true
     
     if [ $? -eq 0 ]; then
-        echo -e "${GREEN}✅ Evaluation completed successfully!${NC}"
-        echo -e "${YELLOW}📁 Check artifacts/cartpole/ppo/ for results${NC}"
+        echo -e "${GREEN}Evaluation completed successfully!${NC}"
+        echo -e "${YELLOW}Check artifacts/cartpole/ppo/ for results${NC}"
     else
-        echo -e "${RED}❌ Evaluation failed${NC}"
+        echo -e "${RED}Evaluation failed${NC}"
         exit 1
     fi
 else
-    echo -e "${RED}❌ Training failed${NC}"
+    echo -e "${RED}Training failed${NC}"
     exit 1
 fi
 
-echo -e "${GREEN}🎉 All done! Check artifacts/cartpole/ppo/ for results.${NC}"
+echo -e "${GREEN}All done! Check artifacts/cartpole/ppo/ for results.${NC}"
