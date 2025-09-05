@@ -1,6 +1,6 @@
 # Reproducible RL Template
 
-[![CI](https://github.com/YOUR_GH_USER/YOUR_REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_GH_USER/YOUR_REPO/actions/workflows/ci.yml)
+[![CI](https://github.com/lucasburgett/rl-reward-tuning-gui/actions/workflows/ci.yml/badge.svg)](https://github.com/lucasburgett/rl-reward-tuning-gui/actions/workflows/ci.yml)
 
 ## Project Goals
 
