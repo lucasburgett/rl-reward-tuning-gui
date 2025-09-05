@@ -1,0 +1,7 @@
+- env=lunarlander
+- algo=ppo
+- total_steps=800000
+- seed=42
+- eval.run_after_train=true
+- eval.record_video=true
+- eval.n_episodes=10
