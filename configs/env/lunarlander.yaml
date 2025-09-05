@@ -1,0 +1,5 @@
+# LunarLander environment preset
+id: LunarLander-v3
+max_steps: 1000
+reward_clip: null         # keep null unless we explicitly clip
+time_limit: null          # set to int to wrap with TimeLimit

@@ -1,0 +1,5 @@
+# Single-environment preset
+id: CartPole-v1
+max_steps: 500
+reward_clip: null         # keep null unless we explicitly clip
+time_limit: null          # set to int to wrap with TimeLimit
