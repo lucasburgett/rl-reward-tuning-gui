@@ -14,7 +14,7 @@ A minimal, reproducible RL template for deep reinforcement learning experiments.
 
 ```bash
 # Clone and setup in 3 commands
-git clone <https://github.com/lucasburgett/rl-reward-tuning-gui>
+git clone https://github.com/lucasburgett/rl-reward-tuning-gui
 cd rl-reward-tuning-gui
 python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
 ```
