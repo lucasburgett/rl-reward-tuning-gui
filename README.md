@@ -1,5 +1,7 @@
 # Reproducible RL Template
 
+[![CI](https://github.com/YOUR_GH_USER/YOUR_REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_GH_USER/YOUR_REPO/actions/workflows/ci.yml)
+
 A clean, reproducible template for deep RL experiments with deterministic runs, clear configs, and one-command training/evaluation.
 
 ## Features
@@ -201,6 +203,24 @@ pytest tests/test_repro_small.py -v
 - **Slow tests**: Tests use `@pytest.mark.timeout(90)` to prevent hanging
 - **Box2D not needed**: CartPole tests don't require Box2D/LunarLander dependencies
 - **Temporary files**: Tests use `tmp_path` fixtures, no cleanup needed
+
+## Docker (CPU)
+
+Build the CPU image:
+```bash
+docker build -f docker/CPU.Dockerfile -t rl-template-cpu:latest .
+```
+
+Run a tiny CartPole train inside the container:
+```bash
+docker run --rm -it -v "$PWD:/app" rl-template-cpu:latest python -m src.train env=cartpole algo=ppo total_steps=5000 use_wandb=false
+```
+
+Or use the convenience scripts:
+```bash
+./scripts/docker_build_cpu.sh
+./scripts/docker_run_cpu.sh python -m src.train env=cartpole algo=ppo total_steps=5000 use_wandb=false
+```
 
 ## Development Notes
 

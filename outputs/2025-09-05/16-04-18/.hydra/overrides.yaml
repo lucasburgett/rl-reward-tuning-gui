@@ -1,0 +1,4 @@
+- env=cartpole
+- algo=ppo
+- total_steps=5000
+- use_wandb=false

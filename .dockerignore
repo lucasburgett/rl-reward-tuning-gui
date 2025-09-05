@@ -1,0 +1,25 @@
+# Virtual envs & caches
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Git & CI
+.git/
+.github/
+
+# Artifacts & media
+artifacts/
+experiments/
+*.mp4
+*.avi
+*.mov
+
+# Editors/OS
+.DS_Store
+.vscode/
+.idea/
