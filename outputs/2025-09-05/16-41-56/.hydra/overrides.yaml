@@ -1,0 +1,4 @@
+- env=cartpole
+- algo=ppo
+- eval.record_video=false
+- eval.n_episodes=5
