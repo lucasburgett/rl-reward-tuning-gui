@@ -258,4 +258,6 @@ If in doubt, open a Draft PR with a brief design note.
 
 ---
 
+### Please do not use emojis within the code
+
 **End of CLAUDE.md**
