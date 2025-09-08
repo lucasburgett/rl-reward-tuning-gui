@@ -58,6 +58,8 @@ def main(cfg: DictConfig) -> None:
         # Get environment config
         if hasattr(cfg, "env") and hasattr(cfg.env, "id"):
             env_id = cfg.env.id
+        elif hasattr(cfg, "env") and hasattr(cfg.env, "env_id"):
+            env_id = cfg.env.env_id
         else:
             # Fallback - map common env names
             env_map = {"cartpole": "CartPole-v1", "lunarlander": "LunarLander-v3"}
@@ -90,6 +92,10 @@ def main(cfg: DictConfig) -> None:
 
         # Create PPO agent with artifacts directory
         print(f"[Agent] Initializing PPO agent for {env_id}")
+
+        # Pass env config for wrapper settings
+        env_cfg = cfg.env if hasattr(cfg, "env") and isinstance(cfg.env, dict) else {}
+
         agent = PPOAgent(
             env_id=env_id,
             seed=cfg.seed,
@@ -97,6 +103,7 @@ def main(cfg: DictConfig) -> None:
             log_dir=str(artifacts_dir),
             cfg=cfg.algo,
             impl="sb3",
+            env_cfg=env_cfg,
         )
 
         # Train the agent with periodic evaluation and logging
