@@ -1,0 +1,4 @@
+- env=panda_reach
+- algo=ppo
+- total_steps=1000
+- use_wandb=false

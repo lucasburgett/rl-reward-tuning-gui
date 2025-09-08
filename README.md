@@ -47,6 +47,12 @@ python -m src.eval env=cartpole algo=ppo eval.record_video=true
 
 # Enable Weights & Biases logging
 python -m src.train env=cartpole algo=ppo use_wandb=true
+
+# Robotics (macOS-friendly): MuJoCo
+python - <<'PY'
+import gymnasium as gym
+env = gym.make("Ant-v5"); env.reset(); env.step(env.action_space.sample()); print("MuJoCo robotics OK")
+PY
 ```
 
 ## Supported Environments & Algorithms
@@ -55,6 +61,7 @@ python -m src.train env=cartpole algo=ppo use_wandb=true
 |-------------|-----------|--------|--------------------|
 | CartPole-v1 | PPO | ✅ | 500/500 (perfect score) |
 | LunarLander-v3 | PPO | ✅ | ≥200 mean return |
+| Ant-v5 | PPO | ✅ | macOS/Windows friendly |
 | *More coming...* | *PPO, DQN* | 🔄 | *TBD* |
 
 ## Determinism Checklist

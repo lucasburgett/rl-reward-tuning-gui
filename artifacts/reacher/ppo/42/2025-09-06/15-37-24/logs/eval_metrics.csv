@@ -1,0 +1,3 @@
+eval_idx,n_episodes,mean_return,std_return,video_written,checkpoint_path
+0,10,-10.786614252993797,2.9330284519224663,False,artifacts/reacher/ppo/42/2025-09-06/15-37-24/checkpoints/final_model.zip
+0,10,-10.786614252993797,2.9330284519224663,False,artifacts/reacher/ppo/42/2025-09-06/15-37-24/checkpoints/final_model.zip

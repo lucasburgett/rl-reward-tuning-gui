@@ -1,0 +1,4 @@
+- env=reacher_mujoco
+- algo=ppo
+- total_steps=10000
+- use_wandb=false
