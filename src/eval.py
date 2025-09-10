@@ -22,7 +22,9 @@ def resolve_artifacts_dir(cfg: DictConfig) -> Path:
         env_name = (
             cfg.env
             if isinstance(cfg.env, str)
-            else getattr(cfg.env, "id", "unknown").split("-")[0].lower()
+            else getattr(cfg.env, "env_id", getattr(cfg.env, "id", "unknown"))
+            .split("-")[0]
+            .lower()
         )
         algo_name = getattr(cfg.algo, "algo_name", cfg.get("algo", "ppo"))
 
@@ -84,10 +86,15 @@ def create_agent_from_config(
     # Get environment config
     if hasattr(cfg, "env") and hasattr(cfg.env, "id"):
         env_id = cfg.env.id
+    elif hasattr(cfg, "env") and hasattr(cfg.env, "env_id"):
+        env_id = cfg.env.env_id
     else:
         # Fallback - map common env names
         env_map = {"cartpole": "CartPole-v1", "lunarlander": "LunarLander-v3"}
         env_id = env_map.get(cfg.env, cfg.env)
+
+    # Pass env config for wrapper settings
+    env_cfg = cfg.env if hasattr(cfg, "env") and isinstance(cfg.env, dict) else {}
 
     # Create agent with dummy config (we'll load from checkpoint)
     agent = PPOAgent(
@@ -97,6 +104,7 @@ def create_agent_from_config(
         log_dir=str(artifacts_dir),
         cfg=cfg.algo,
         impl="sb3",
+        env_cfg=env_cfg,
     )
 
     # Load the checkpoint

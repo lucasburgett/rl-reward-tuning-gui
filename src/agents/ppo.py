@@ -9,12 +9,15 @@ from typing import Any
 
 import gymnasium as gym
 import numpy as np
+from gymnasium.wrappers import TimeLimit
 from stable_baselines3 import PPO as SB3PPO
 from stable_baselines3.common.callbacks import (
     BaseCallback,
     CheckpointCallback,
     EvalCallback,
 )
+
+from src.wrappers import NormalizeObs, RewardComponentsLogger
 
 
 class PPOAgent:
@@ -28,6 +31,7 @@ class PPOAgent:
         log_dir: str,
         cfg: dict[str, Any],
         impl: str = "sb3",
+        env_cfg: dict[str, Any] | None = None,
     ):
         """
         Initialize PPO agent.
@@ -39,6 +43,7 @@ class PPOAgent:
             log_dir: Directory for logs and checkpoints
             cfg: Configuration dictionary with PPO hyperparameters
             impl: Implementation to use ("sb3" or "cleanrl")
+            env_cfg: Environment configuration for wrappers
         """
         self.env_id = env_id
         self.seed = seed
@@ -46,6 +51,7 @@ class PPOAgent:
         self.log_dir = Path(log_dir)
         self.cfg = cfg
         self.impl = impl
+        self.env_cfg = env_cfg or {}
 
         # Create directories
         self.log_dir.mkdir(parents=True, exist_ok=True)
@@ -67,9 +73,32 @@ class PPOAgent:
             raise ValueError(f"Unknown implementation: {impl}")
 
     def _create_env(self, render_mode: str | None = None) -> gym.Env[Any, Any]:
-        """Create a Gymnasium environment with proper seeding."""
+        """Create a Gymnasium environment with proper seeding and wrappers."""
         env = gym.make(self.env_id, render_mode=render_mode)
         env.reset(seed=self.seed)
+
+        # Apply wrappers based on env_cfg
+        # TimeLimit wrapper
+        max_steps = self.env_cfg.get("max_episode_steps")
+        if max_steps:
+            env = TimeLimit(env, max_episode_steps=int(max_steps))
+
+        # Normalize observations wrapper
+        norm_cfg = self.env_cfg.get("normalize_obs", {})
+        if norm_cfg.get("enabled", False):
+            clip = float(norm_cfg.get("clip", 5.0))
+            epsilon = float(norm_cfg.get("epsilon", 1e-8))
+            env = NormalizeObs(env, clip=clip, epsilon=epsilon)
+
+        # Reward components logging wrapper
+        rc_cfg = self.env_cfg.get("reward_components", {})
+        if rc_cfg.get("enabled", False):
+            csv_path = rc_cfg.get("csv_path")
+            if csv_path:
+                # Resolve ${log_dir} template
+                csv_path = str(csv_path).replace("${log_dir}", str(self.log_dir))
+            env = RewardComponentsLogger(env, csv_path=csv_path)
+
         return env
 
     def _init_sb3_agent(self) -> None:

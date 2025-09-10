@@ -1,0 +1,13 @@
+# configs/env/reacher_mujoco.yaml
+env: reacher_mujoco
+env_id: Reacher-v5
+
+# Wrapper settings for Day 9
+max_episode_steps: 200            # enforce a 200-step horizon
+normalize_obs:
+  enabled: true
+  clip: 5.0
+  epsilon: 1e-8
+reward_components:
+  enabled: true                   # log reward components if exposed via info
+  csv_path: ${log_dir}/logs/reward_components.csv

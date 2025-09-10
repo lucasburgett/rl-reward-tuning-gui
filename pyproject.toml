@@ -5,6 +5,18 @@ target-version = ['py311']
 [tool.ruff]
 line-length = 88
 target-version = "py311"
+include = ["*.py", "*.pyi", "**/pyproject.toml"]
+exclude = [
+    ".git",
+    ".venv",
+    "artifacts",
+    "outputs",
+    "*.yaml",
+    "*.yml",
+    "*.sh",
+    "*.txt",
+    "*.md"
+]
 
 [tool.ruff.lint]
 select = ["E", "F", "B", "I", "UP"]

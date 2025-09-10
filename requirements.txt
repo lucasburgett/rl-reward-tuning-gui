@@ -11,3 +11,7 @@ pygame>=2.5.0
 wandb>=0.17.0
 pytest>=8.2
 pytest-timeout>=2.3
+
+# Day 8 robotics (MuJoCo - macOS friendly)
+mujoco==3.3.5
+gymnasium[mujoco]==1.2.0

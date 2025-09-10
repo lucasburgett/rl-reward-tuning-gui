@@ -1,0 +1,4 @@
+- env=panda_reach
+- algo=ppo
+- eval.record_video=false
+- eval.n_episodes=3

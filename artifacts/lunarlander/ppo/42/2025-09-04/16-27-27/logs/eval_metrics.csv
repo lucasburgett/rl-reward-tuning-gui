@@ -1,3 +1,0 @@
-eval_idx,n_episodes,mean_return,std_return,video_written,checkpoint_path
-0,10,-290.029069467078,135.21005454290125,False,artifacts/lunarlander/ppo/42/2025-09-04/16-27-27/checkpoints/final_model.zip
-0,10,-290.029069467078,135.21005454290125,True,artifacts/lunarlander/ppo/42/2025-09-04/16-27-27/checkpoints/final_model.zip
