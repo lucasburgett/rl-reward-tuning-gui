@@ -209,6 +209,7 @@ __marimo__/
 
 # RL Template artifacts and hydra outputs
 artifacts/
+reports/
 outputs/
 videos/
 *.mp4

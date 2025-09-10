@@ -31,7 +31,9 @@ def main(cfg: DictConfig) -> None:
         env_name = (
             cfg.env
             if isinstance(cfg.env, str)
-            else getattr(cfg.env, "id", "unknown").split("-")[0].lower()
+            else getattr(cfg.env, "env_id", getattr(cfg.env, "id", "unknown"))
+            .split("-")[0]
+            .lower()
         )
         algo_name = getattr(cfg.algo, "algo_name", cfg.get("algo", "ppo"))
         artifacts_dir = (

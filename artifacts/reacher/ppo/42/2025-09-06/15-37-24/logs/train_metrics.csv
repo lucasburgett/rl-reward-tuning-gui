@@ -1,2 +1,0 @@
-global_step,timesteps,episodic_return_mean,episodic_return_std,wall_time_s
-10000,10000,-10.786614252993797,2.9330284519224663,1.7267241477966309

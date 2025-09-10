@@ -1,3 +1,0 @@
-eval_idx,n_episodes,mean_return,std_return,video_written,checkpoint_path
-0,10,993.7035968368889,2.8086869556628558,False,artifacts/ant/ppo/42/2025-09-06/15-28-20/checkpoints/final_model.zip
-0,3,991.9707909972544,1.7256093268558441,False,artifacts/ant/ppo/42/2025-09-06/15-28-20/checkpoints/final_model.zip

@@ -95,6 +95,42 @@ PY
 **Tests failing**: Run `pytest -q` and check CI status  
 **Import errors**: Ensure `pip install -r requirements.txt` completed successfully
 
+## Day 10 — Results across seeds
+
+Quantify variance across multiple seeds for reproducibility analysis:
+
+```bash
+# Run all environments (CartPole, LunarLander, Reacher) with 3 seeds each
+chmod +x scripts/run_seeds.sh
+./scripts/run_seeds.sh
+
+# Aggregate results to compute mean ± std across seeds
+python scripts/aggregate_results.py
+
+# View results
+cat reports/results.md
+cat reports/results_seed_stats.csv
+```
+
+**Outputs**:
+- `reports/results.md`: Markdown table with mean ± std performance
+- `reports/results_seed_stats.csv`: CSV with detailed statistics
+- `reports/run_manifest.json`: Manifest of all run directories
+
+**Environment defaults**:
+- CartPole: 100K steps × 3 seeds (~6-9 min total)
+- LunarLander: 1M steps × 3 seeds (~45-90 min total)  
+- Reacher-v5: 800K steps × 3 seeds (~60-90 min total)
+
+**Customization**:
+```bash
+# Custom steps and seeds
+SEEDS="1 2 3 4 5" STEPS_CARTPOLE=50000 ./scripts/run_seeds.sh
+
+# Enable W&B tracking
+USE_WANDB=true WANDB_MODE=offline ./scripts/run_seeds.sh
+```
+
 ---
 
 ## Advanced Usage
