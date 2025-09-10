@@ -131,6 +131,14 @@ SEEDS="1 2 3 4 5" STEPS_CARTPOLE=50000 ./scripts/run_seeds.sh
 USE_WANDB=true WANDB_MODE=offline ./scripts/run_seeds.sh
 ```
 
+**Clean 3-Seed Results** (optimized PPO settings):
+
+| Env            | Algo | Steps   | Seeds | Mean ± Std   |
+|----------------|------|---------|-------|--------------|
+| CartPole-v1    | PPO  | 100k    | 3     | 472.0 ± 48.50|
+| LunarLander-v2 | PPO  | 1.0M    | 3     | 185.7 ± 67.23|
+| Reacher-v5     | PPO  | 0.8M    | 3     | -8.45 ± 2.14 |
+
 ---
 
 ## Advanced Usage
