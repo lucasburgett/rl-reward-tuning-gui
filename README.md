@@ -19,6 +19,30 @@ cd rl-reward-tuning-gui
 python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
 ```
 
+## Deterministic Setup
+
+For maximum reproducibility, this project provides two dependency installation options:
+
+### Option 1: Pinned Dependencies (Recommended)
+```bash
+pip install -r requirements.txt
+```
+Uses exact versions that are tested and validated.
+
+### Option 2: Exact Lock (Strictest)
+```bash
+pip install -r requirements-lock.txt
+```
+Installs the exact environment used for development, including all transitive dependencies.
+
+**Caveats**:
+- Lock file is platform-specific (generated on macOS)
+- May conflict with existing packages in your environment
+- Use in a fresh virtual environment for best results
+- Some packages may not be available on different platforms
+
+**Tolerance**: Deterministic runs should produce identical results within `atol=1e-7` for most operations. Slight differences may occur due to floating-point precision limits or hardware variations.
+
 ## Reproduce in One Command
 
 **For new users**: Clone the repo and run CartPole PPO training + evaluation with a single command:
