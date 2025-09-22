@@ -10,16 +10,15 @@ import hydra
 from omegaconf import DictConfig, OmegaConf
 
 from src.agents import PPOAgent
+from src.utils.determinism import configure_determinism, print_determinism_report
 from src.utils.logger import CSVLogger, create_training_metrics_row
-from src.utils.seeding import set_seed, version_banner
 
 
 @hydra.main(version_base=None, config_path="../configs", config_name="config")
 def main(cfg: DictConfig) -> None:
-    # Seed + banner
-    set_seed(cfg.seed, cfg.deterministic)
-    print(version_banner())
-    print("[Seed] set_seed:", cfg.seed, "| deterministic:", bool(cfg.deterministic))
+    # Configure determinism and print report
+    configure_determinism(cfg.seed, cfg.deterministic)
+    print_determinism_report(cfg.seed, cfg.deterministic)
 
     # Show composed config (including CLI overrides like env=cartpole algo=ppo)
     print("\n[Composed Config]")

@@ -1,16 +1,17 @@
-stable-baselines3>=2.3.0
-gymnasium[classic-control,box2d]>=0.29.1
-Box2D>=2.3.10
-torch>=2.0.0
-numpy>=1.24.0
-tqdm>=4.65.0
-hydra-core>=1.3.2
-omegaconf>=2.3.0
-moviepy>=1.0.3
-pygame>=2.5.0
-wandb>=0.17.0
-pytest>=8.2
-pytest-timeout>=2.3
+# Pinned dependencies for reproducible builds
+stable-baselines3==2.7.0
+gymnasium[classic-control,box2d]==1.2.0
+Box2D==2.3.10
+torch==2.8.0
+numpy==2.3.2
+tqdm==4.67.1
+hydra-core==1.3.2
+omegaconf==2.3.0
+moviepy==2.2.1
+pygame==2.6.1
+wandb==0.21.3
+pytest==8.3.2
+pytest-timeout==2.4.0
 
 # Day 8 robotics (MuJoCo - macOS friendly)
 mujoco==3.3.5
